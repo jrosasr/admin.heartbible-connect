@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Story;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,5 +20,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        Story::create(
+            [
+                'title' => 'El buen samaritano',
+                'verses_count' => 15,
+                'location' => 'Lucas 10:20-30',
+                'difficulty' => 'low'
+            ]
+        );
     }
 }

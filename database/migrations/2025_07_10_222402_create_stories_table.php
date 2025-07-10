@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_levels', function (Blueprint $table) {
+        Schema::create('stories', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->integer('verses_count');
+            $table->string('location');
+            $table->enum('difficulty', ['low', 'medium', 'high', 'legend'])->default('low');
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_levels');
+        Schema::dropIfExists('stories');
     }
 };
