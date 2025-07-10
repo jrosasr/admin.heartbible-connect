@@ -14,7 +14,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'dni', // Asumo que cambiaste 'cedula' a 'dni' como en 0001_01_01_000000_create_users_table.php
+        'dni',
         'password',
     ];
 
@@ -36,9 +36,18 @@ class User extends Authenticatable
      */
     public function stories(): BelongsToMany
     {
-        // YA NO USES ->using(UserStory::class) aquí
         return $this->belongsToMany(Story::class, 'user_stories')
                     ->withPivot('learned_at')
+                    ->withTimestamps();
+    }
+
+    /**
+     * The achievements that the user has earned. // ¡Nueva relación!
+     */
+    public function achievements(): BelongsToMany
+    {
+        return $this->belongsToMany(Achievement::class, 'user_achievements')
+                    ->withPivot('awarded_at')
                     ->withTimestamps();
     }
 }
