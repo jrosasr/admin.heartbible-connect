@@ -22,9 +22,16 @@ class Story extends Model
      */
     public function users(): BelongsToMany
     {
-        // YA NO USES ->using(UserStory::class) aquí
         return $this->belongsToMany(User::class, 'user_stories')
                     ->withPivot('learned_at')
                     ->withTimestamps();
+    }
+
+    /**
+     * The series that this story belongs to.
+     */
+    public function series(): BelongsToMany // ¡Añade esta relación!
+    {
+        return $this->belongsToMany(Serie::class, 'story_series')->withTimestamps();
     }
 }
